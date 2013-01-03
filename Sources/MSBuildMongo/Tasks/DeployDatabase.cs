@@ -1,22 +1,11 @@
 ﻿using System;
-using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
 namespace MSBuildMongo.Tasks
 {
-    public class DeployDatabase : ITask
+    public class DeployDatabase : Task
     {
-        private TaskLoggingHelper log;
-
-        private TaskLoggingHelper Log
-        {
-            get { return log ?? (log = new TaskLoggingHelper(this)); }
-        }
-
-        public IBuildEngine BuildEngine { get; set; }
-        public ITaskHost HostObject { get; set; }
-
-        public bool Execute()
+        public override bool Execute()
         {
             try
             {
