@@ -2,7 +2,7 @@
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
-namespace MSBulidMongo.Tasks
+namespace MSBuildMongo.Tasks
 {
     public class DeployDatabase : ITask
     {

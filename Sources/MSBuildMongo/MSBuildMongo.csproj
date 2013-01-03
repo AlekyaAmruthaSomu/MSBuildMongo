@@ -8,8 +8,8 @@
     <ProjectGuid>{66D9E4A6-24C8-402A-BBE1-C3E10F0C759A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MSBulidMongo</RootNamespace>
-    <AssemblyName>MSBulidMongo</AssemblyName>
+    <RootNamespace>MSBuildMongo</RootNamespace>
+    <AssemblyName>MSBuildMongo</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -46,6 +46,9 @@
     <Compile Include="Tasks\DeployDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="MSBuildMongo.targets">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="MSBuildMongo.tasks">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

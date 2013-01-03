@@ -4,5 +4,5 @@
     <TasksPath></TasksPath>
   </PropertyGroup>
 
-  <UsingTask AssemblyFile="$(TasksPath)MSBuildMongo.dll" TaskName="MSBulidMongo.Tasks.Database" />
+  <UsingTask AssemblyFile="$(TasksPath)MSBuildMongo.dll" TaskName="MSBuildMongo.Tasks.DeployDatabase" />
 </Project>
