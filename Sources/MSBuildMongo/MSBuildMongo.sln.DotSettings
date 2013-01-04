@@ -25,6 +25,7 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=8377B329_002DBBB8_002D44EB_002D9ABD_002D4B6E34E27C3B_002Fd_003AScripts_002Ff_003Amodernizr_002D2_002E5_002E3_002Ejs/@EntryIndexedValue">ExplicitlyExcluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=BE7CAB42_002DC9A1_002D42F0_002DB78B_002D5980CD947F6C/@EntryIndexedValue">ExplicitlyExcluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=CE009BFA_002D5EF6_002D4153_002DB2A1_002D2FA79698A9AE/@EntryIndexedValue">ExplicitlyExcluded</s:String>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/REDUNDANT_THIS_QUALIFIER_STYLE/@EntryValue">ALWAYS_USE</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/PredefinedNamingRules/=PrivateStaticReadonly/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="aaBb" /&gt;</s:String>
 	
 	

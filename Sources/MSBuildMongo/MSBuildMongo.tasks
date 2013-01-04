@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TasksPath></TasksPath>
   </PropertyGroup>
-
-  <UsingTask AssemblyFile="$(TasksPath)MSBuildMongo.dll" TaskName="MSBuildMongo.Tasks.DeployDatabase" />
+  
+  <UsingTask AssemblyFile="d:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Debug\MSBuildMongo.dll" TaskName="DeployDatabase" />
+  <UsingTask AssemblyFile="d:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Debug\MSBuildMongo.dll" TaskName="CreateDatabase" />
 </Project>
