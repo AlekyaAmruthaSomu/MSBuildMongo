@@ -24,8 +24,7 @@ namespace MSBuildMongo.Tasks
         {
             this.Log.LogMessage("Creating database: " + this.DatabaseName);
             try
-            {
-                Debugger.Launch();
+            {   
                 this.EnsureAccessRights();
                 this.CreateDb();
             }
@@ -35,42 +34,49 @@ namespace MSBuildMongo.Tasks
                 return false;
             }
 
+            this.Log.LogMessage("Database was created");
             return true;
         }
 
         private void CreateDb()
         {
             var url = new MongoUrl(this.ConnectionString);
-            MongoClientSettings settings = MongoClientSettings.FromUrl(url);
+            var settings = MongoClientSettings.FromUrl(url);
+            var databaseUser = this.GetDatabaseUser(settings);
 
+            var adminCredentials = GetAdminCredentials();
+            settings.CredentialsStore.AddCredentials("admin", adminCredentials);
+            settings.DefaultCredentials = null;
+
+            var client = new MongoClient(settings);
+            var server = client.GetServer();
+            var db = server.GetDatabase(this.DatabaseName);
+
+            if (databaseUser == null)
+            {
+                return;
+            }
+
+            var user = db.FindUser(databaseUser.Username);
+            if (databaseUser.Equals(user))
+            {
+                return;
+            }
+            
+            Log.LogMessage(string.Format("Adding user credentials UserName: '{0}' Password: '{1}' Admin: '{2}'", this.UserName, this.Password, this.Admin));
+            db.AddUser(databaseUser);
+        }
+
+        private MongoUser GetDatabaseUser(MongoClientSettings settings)
+        {
             MongoUser user = null;
             MongoCredentials credentials = this.GetUserCredentials(settings);
-            
+
             if (credentials != null)
             {
                 user = new MongoUser(credentials, !credentials.Admin);
             }
-
-            settings.DefaultCredentials = null;
-            
-            MongoCredentials adminCredentials = GetAdminCredentials();
-            settings.CredentialsStore.AddCredentials("admin", adminCredentials);
-            var client = new MongoClient(settings);
-            MongoServer server = client.GetServer();
-            MongoDatabase db = server.GetDatabase(this.DatabaseName);
-
-            if (user == null)
-            {
-                return;
-            }
-
-            MongoUser dbUser = db.FindUser(user.Username);
-            if (user.Equals(dbUser))
-            {
-                return;
-            }
-            
-            db.AddUser(user);
+            return user;
         }
 
         private MongoCredentials GetUserCredentials(MongoClientSettings settings)

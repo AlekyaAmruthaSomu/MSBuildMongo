@@ -2,8 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TasksPath></TasksPath>
+    <AssemblyName>MSBuildMongo.dll</AssemblyName>
+    <AssemblyFile>$(TasksPath)$(AssemblyName)</AssemblyFile>
   </PropertyGroup>
   
-  <UsingTask AssemblyFile="d:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Debug\MSBuildMongo.dll" TaskName="DeployDatabase" />
-  <UsingTask AssemblyFile="d:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Debug\MSBuildMongo.dll" TaskName="CreateDatabase" />
+  <UsingTask AssemblyFile="$(AssemblyFile)" TaskName="DeployDatabase" />
+  <UsingTask AssemblyFile="$(AssemblyFile)" TaskName="CreateDatabase" />
 </Project>

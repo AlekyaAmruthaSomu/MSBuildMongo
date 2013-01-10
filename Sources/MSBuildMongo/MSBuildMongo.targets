@@ -5,6 +5,6 @@
   
   <Target Name="Deploy">
     <Message Text="$(MSBuildProjectDirectory)\MSBuildMongo.tasks" />
-    <CreateDatabase ConnectionString="mongodb://localhost" DatabaseName="MSBuildMongo" UserName="api" />
+    <CreateDatabase ConnectionString="mongodb://localhost" DatabaseName="TestDatabase" UserName="api" Password="123456" Admin="true"/>
   </Target>
 </Project>
