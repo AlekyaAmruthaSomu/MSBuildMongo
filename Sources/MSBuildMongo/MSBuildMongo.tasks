@@ -7,5 +7,6 @@
   </PropertyGroup>
   
   <UsingTask AssemblyFile="$(AssemblyFile)" TaskName="DeployDatabase" />
-  <UsingTask AssemblyFile="$(AssemblyFile)" TaskName="CreateDatabase" />
+  <UsingTask AssemblyFile="$(AssemblyFile)" TaskName="AddUser" />
+  <UsingTask AssemblyFile="$(AssemblyFile)" TaskName="RunCommand" />
 </Project>
