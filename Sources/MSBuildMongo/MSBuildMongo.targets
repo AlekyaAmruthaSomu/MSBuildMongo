@@ -2,9 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Deploy">
 
   <Import Project="$(MSBuildProjectDirectory)\MSBuildMongo.tasks" />
-  
+
   <Target Name="Deploy">
     <Message Text="$(MSBuildProjectDirectory)\MSBuildMongo.tasks" />
-    <CreateDatabase ConnectionString="mongodb://localhost" DatabaseName="TestDatabase" UserName="api" Password="123456" Admin="true"/>
+    <AddUser ConnectionString="mongodb://localhost" DatabaseName="TestDatabase" UserName="NewUser" Password="12398hjasd" Admin="true"/>
+    <RunCommand ConnectionString="mongodb://localhost" DatabaseName="TestDatabase" Command="MongoCommand" />
   </Target>
 </Project>

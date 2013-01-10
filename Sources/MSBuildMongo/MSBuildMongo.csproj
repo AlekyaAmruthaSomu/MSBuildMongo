@@ -49,8 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tasks\CreateDatabase.cs" />
+    <Compile Include="Tasks\AddUser.cs" />
     <Compile Include="Tasks\DeployDatabase.cs" />
+    <Compile Include="Tasks\MongoTaskBase.cs" />
+    <Compile Include="Tasks\RunCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MSBuildMongo.targets">
