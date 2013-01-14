@@ -16,10 +16,10 @@ namespace MSBuildMongo.Tasks
 
         public override bool Execute()
         {
-            this.Log.LogMessage("Creating database: " + this.DatabaseName);
+            this.Log.LogMessage(string.Format("Adding user '{0}' into database '{1}'", this.UserName, this.Database));
             try
             {
-                var user = this.GetMongoUser();
+                MongoUser user = this.GetMongoUser();
                 this.Database.AddUser(user);
             }
             catch (Exception ex)
@@ -28,7 +28,7 @@ namespace MSBuildMongo.Tasks
                 return false;
             }
 
-            this.Log.LogMessage("Database was created");
+            this.Log.LogMessage(string.Format("User '{0}' was successfully added", this.UserName));
             return true;
         }
 

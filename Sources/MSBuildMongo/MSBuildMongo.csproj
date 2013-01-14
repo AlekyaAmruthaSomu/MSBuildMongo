@@ -40,6 +40,7 @@
       <HintPath>packages\mongocsharpdriver.1.7\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,6 +53,7 @@
     <Compile Include="Tasks\AddUser.cs" />
     <Compile Include="Tasks\MongoTaskBase.cs" />
     <Compile Include="Tasks\RunCommand.cs" />
+    <Compile Include="Tasks\RunJavascript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MSBuildMongo.targets">

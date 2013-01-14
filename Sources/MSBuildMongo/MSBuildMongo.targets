@@ -3,9 +3,13 @@
 
   <Import Project="$(MSBuildProjectDirectory)\MSBuildMongo.tasks" />
 
+  <PropertyGroup>
+    <ConnectionString>mongodb://localhost</ConnectionString>
+  </PropertyGroup>
+  
   <Target Name="Deploy">
     <Message Text="$(MSBuildProjectDirectory)\MSBuildMongo.tasks" />
-    <AddUser ConnectionString="mongodb://localhost" DatabaseName="TestDatabase" UserName="NewUser" Password="12398hjasd" Admin="true"/>
-    <RunCommand ConnectionString="mongodb://localhost" DatabaseName="TestDatabase" Command="MongoCommand" />
+    <AddUser ConnectionString="$(ConnectionString)" DatabaseName="CockpitStatistic3" UserName="api" Password="12398hjasd" Admin="true"/>
+    
   </Target>
 </Project>

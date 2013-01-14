@@ -6,6 +6,11 @@ namespace MSBuildMongo.Tasks
 {
     public abstract class MongoTaskBase : Task
     {
+        private const string MongoAdministratorDatabase = "admin";
+
+        private const string MongoAdministratorName = "root";
+
+        private const string MongoAdministrtorPassword = "secretPassword";
         private MongoDatabase db;
 
         [Required]
@@ -19,17 +24,6 @@ namespace MSBuildMongo.Tasks
             get { return this.db ?? (this.db = this.GetDatabase()); }
         }
 
-        private static bool IsUserAdmin(MongoUser user)
-        {
-            return user != null && !user.IsReadOnly;
-        }
-
-        protected static MongoCredentials GetAdminCredentials()
-        {
-            var adminCredentials = new MongoCredentials("root", "secretPassword", true);
-            return adminCredentials;
-        }
-
         private MongoDatabase GetDatabase()
         {
             this.EnsureAccessRights();
@@ -38,7 +32,7 @@ namespace MSBuildMongo.Tasks
             MongoClientSettings settings = MongoClientSettings.FromUrl(url);
 
             MongoCredentials adminCredentials = GetAdminCredentials();
-            settings.CredentialsStore.AddCredentials("admin", adminCredentials);
+            settings.CredentialsStore.AddCredentials(MongoAdministratorDatabase, adminCredentials);
             settings.DefaultCredentials = null;
 
             var client = new MongoClient(settings);
@@ -55,9 +49,9 @@ namespace MSBuildMongo.Tasks
             MongoCredentials adminCredentials = GetAdminCredentials();
             var client = new MongoClient(settings);
             MongoServer server = client.GetServer();
-            MongoDatabase adminDatabase = server.GetDatabase("admin");
+            MongoDatabase adminDatabase = server.GetDatabase(MongoAdministratorDatabase);
 
-            MongoUser user = adminDatabase.FindUser("root");
+            MongoUser user = adminDatabase.FindUser(MongoAdministratorName);
             if (IsUserAdmin(user))
             {
                 return;
@@ -66,6 +60,16 @@ namespace MSBuildMongo.Tasks
             user = new MongoUser(adminCredentials, false);
             adminDatabase.AddUser(user);
             server.Disconnect();
+        }
+
+        private static MongoCredentials GetAdminCredentials()
+        {
+            return new MongoCredentials(MongoAdministratorName, MongoAdministrtorPassword, true);
+        }
+
+        private static bool IsUserAdmin(MongoUser user)
+        {
+            return user != null && !user.IsReadOnly;
         }
     }
 }
