@@ -19,7 +19,6 @@ namespace MSBuildMongo.Tasks
 
             try
             {
-                System.Diagnostics.Debugger.Launch();
                 Log.LogMessage("Executing command: " + Command);
                 commandResult = this.Database.RunCommand(this.Command);
             }

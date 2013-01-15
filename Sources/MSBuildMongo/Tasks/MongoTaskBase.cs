@@ -1,4 +1,7 @@
-﻿using Microsoft.Build.Framework;
+﻿using System.Configuration;
+using System.IO;
+using System.Reflection;
+using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using MongoDB.Driver;
 
@@ -6,12 +9,34 @@ namespace MSBuildMongo.Tasks
 {
     public abstract class MongoTaskBase : Task
     {
-        private const string MongoAdministratorDatabase = "admin";
-
-        private const string MongoAdministratorName = "root";
-
-        private const string MongoAdministrtorPassword = "secretPassword";
+        private Configuration configuration;
         private MongoDatabase db;
+
+        private string AssemblyLocation
+        {
+            get { return Assembly.GetExecutingAssembly().Location; }
+        }
+
+        private Configuration Configuration
+        {
+            get { return this.configuration ?? (this.configuration = this.OpenConfiguration()); }
+        }
+
+
+        private string MongoAdministratorDatabase
+        {
+            get { return this.GetAppSettings("MongoAdministratorDatabase"); }
+        }
+
+        private string MongoAdministratorName
+        {
+            get { return this.GetAppSettings("MongoAdministratorName"); }
+        }
+
+        private string MongoAdministrtorPassword
+        {
+            get { return this.GetAppSettings("MongoAdministratorPassword"); }
+        }
 
         [Required]
         public string ConnectionString { get; set; }
@@ -31,8 +56,9 @@ namespace MSBuildMongo.Tasks
             var url = new MongoUrl(this.ConnectionString);
             MongoClientSettings settings = MongoClientSettings.FromUrl(url);
 
-            MongoCredentials adminCredentials = GetAdminCredentials();
-            settings.CredentialsStore.AddCredentials(MongoAdministratorDatabase, adminCredentials);
+            MongoCredentials adminCredentials = this.GetAdminCredentials();
+
+            settings.CredentialsStore.AddCredentials(this.MongoAdministratorDatabase, adminCredentials);
             settings.DefaultCredentials = null;
 
             var client = new MongoClient(settings);
@@ -46,12 +72,12 @@ namespace MSBuildMongo.Tasks
             MongoClientSettings settings = MongoClientSettings.FromUrl(url);
             settings.DefaultCredentials = null;
 
-            MongoCredentials adminCredentials = GetAdminCredentials();
+            MongoCredentials adminCredentials = this.GetAdminCredentials();
             var client = new MongoClient(settings);
             MongoServer server = client.GetServer();
-            MongoDatabase adminDatabase = server.GetDatabase(MongoAdministratorDatabase);
+            MongoDatabase adminDatabase = server.GetDatabase(this.MongoAdministratorDatabase);
 
-            MongoUser user = adminDatabase.FindUser(MongoAdministratorName);
+            MongoUser user = adminDatabase.FindUser(this.MongoAdministratorName);
             if (IsUserAdmin(user))
             {
                 return;
@@ -62,14 +88,42 @@ namespace MSBuildMongo.Tasks
             server.Disconnect();
         }
 
-        private static MongoCredentials GetAdminCredentials()
+        private MongoCredentials GetAdminCredentials()
         {
-            return new MongoCredentials(MongoAdministratorName, MongoAdministrtorPassword, true);
+            return new MongoCredentials(this.MongoAdministratorName, this.MongoAdministrtorPassword, true);
         }
 
         private static bool IsUserAdmin(MongoUser user)
         {
             return user != null && !user.IsReadOnly;
+        }
+
+        private string GetAppSettings(string appSettingsKey)
+        {
+            KeyValueConfigurationElement element = this.Configuration.AppSettings.Settings[appSettingsKey];
+            if (element == null)
+            {
+                throw new ConfigurationErrorsException(string.Format("appSettings key '{0}' not found", appSettingsKey));
+            }
+
+            if (string.IsNullOrEmpty(element.Value))
+            {
+                throw new ConfigurationErrorsException(string.Format("appSettings key '{0}' does not have a value.",
+                                                                     appSettingsKey));
+            }
+
+            return element.Value;
+        }
+
+        private Configuration OpenConfiguration()
+        {
+            Configuration result = ConfigurationManager.OpenExeConfiguration(this.AssemblyLocation);
+            if (!result.HasFile)
+            {
+                throw new FileNotFoundException(result.FilePath);
+            }
+
+            return result;
         }
     }
 }

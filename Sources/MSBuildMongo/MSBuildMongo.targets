@@ -5,11 +5,23 @@
 
   <PropertyGroup>
     <ConnectionString>mongodb://localhost</ConnectionString>
+    <MongoAdministratorDatabase>admin</MongoAdministratorDatabase>
+    <MongoAdministratorName>root</MongoAdministratorName>
+    <MongoAdministrtorPassword>secretPassword</MongoAdministrtorPassword>
+    <MigrationCollectionName>CockpitMigration</MigrationCollectionName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Migrations Include="d:\develop\msbuild\MSBuildMongo\Sources\Migration\migration-01.js">
+      <MigrationId>4CF1A5F3-33D2-4223-9B31-E57515A9D7F3</MigrationId>
+    </Migrations>
+    <Migrations Include="d:\develop\msbuild\MSBuildMongo\Sources\Migration\migration-02.js">
+      <MigrationId>617FC23C-BEC9-452F-8558-D0EFC76A92EB</MigrationId>
+    </Migrations>
+  </ItemGroup>
   
   <Target Name="Deploy">
     <Message Text="$(MSBuildProjectDirectory)\MSBuildMongo.tasks" />
-    <AddUser ConnectionString="$(ConnectionString)" DatabaseName="CockpitStatistic3" UserName="api" Password="12398hjasd" Admin="true"/>
-    
+    <ApplyMigration ConnectionString ="$(ConnectionString)" DatabaseName ="CockpitStatistic3" Migrations="@(Migrations)" Config="$(MSBuildProjectDirectory)\$(AppConfig)"/>
   </Target>
 </Project>

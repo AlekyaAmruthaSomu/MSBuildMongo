@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Build.Framework;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace MSBuildMongo.Tasks
 {
@@ -17,15 +18,8 @@ namespace MSBuildMongo.Tasks
         {
             try
             {
-                System.Diagnostics.Debugger.Launch();
-                using (var stream = new FileStream(FileName, FileMode.Open))
-                {
-                    using (var reader = new StreamReader(stream))
-                    {
-                        var javascript = new BsonJavaScript(reader.ReadToEnd());
-                        var result = this.Database.Eval(javascript);
-                    }
-                }
+                Log.LogMessage(string.Format("Executing javascript: '{0}'", this.FileName));
+                Eval(this.Database, this.FileName);
             }
             catch (Exception ex)
             {
@@ -33,6 +27,18 @@ namespace MSBuildMongo.Tasks
                 return false;
             }
             return true;
+        }
+
+        public static void Eval(MongoDatabase database, string fileName)
+        {
+            using (var stream = new FileStream(fileName, FileMode.Open))
+            {
+                using (var reader = new StreamReader(stream))
+                {
+                    var javaScript = new BsonJavaScript(reader.ReadToEnd());
+                    database.Eval(javaScript);
+                }
+            }
         }
     }
 }

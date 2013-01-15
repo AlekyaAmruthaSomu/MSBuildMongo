@@ -51,11 +51,14 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\AddUser.cs" />
+    <Compile Include="Tasks\ApplyMigration.cs" />
+    <Compile Include="Tasks\Migration.cs" />
     <Compile Include="Tasks\MongoTaskBase.cs" />
     <Compile Include="Tasks\RunCommand.cs" />
     <Compile Include="Tasks\RunJavascript.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="MSBuildMongo.targets">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
