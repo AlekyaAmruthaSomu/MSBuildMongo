@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TasksPath></TasksPath>
-    <AssemblyName>MSBuildMongo.dll</AssemblyName>
+    <AssemblyName>MongoDB.MSBuild.dll</AssemblyName>
     <AssemblyFile>$(TasksPath)$(AssemblyName)</AssemblyFile>
   </PropertyGroup>
   

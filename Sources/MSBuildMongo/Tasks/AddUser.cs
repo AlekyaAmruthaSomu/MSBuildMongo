@@ -2,7 +2,7 @@
 using Microsoft.Build.Framework;
 using MongoDB.Driver;
 
-namespace MSBuildMongo.Tasks
+namespace MongoDB.MSBuild.Tasks
 {
     public class AddUser : MongoTaskBase
     {

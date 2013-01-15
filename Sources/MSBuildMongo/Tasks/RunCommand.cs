@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Build.Framework;
-using Microsoft.Build.Utilities;
 using MongoDB.Driver;
 
-namespace MSBuildMongo.Tasks
+namespace MongoDB.MSBuild.Tasks
 {
     public class RunCommand : MongoTaskBase
     {
@@ -19,16 +15,16 @@ namespace MSBuildMongo.Tasks
 
             try
             {
-                Log.LogMessage("Executing command: " + Command);
+                this.Log.LogMessage("Executing command: " + this.Command);
                 commandResult = this.Database.RunCommand(this.Command);
             }
             catch (Exception ex)
             {
-                Log.LogErrorFromException(ex);
+                this.Log.LogErrorFromException(ex);
                 return false;
             }
             
-            Log.LogMessage(string.Format("Command returns: Response: '{0}' ErrorMessage: '{1}'", commandResult.Response, commandResult.ErrorMessage));
+            this.Log.LogMessage(string.Format("Command returns: Response: '{0}' ErrorMessage: '{1}'", commandResult.Response, commandResult.ErrorMessage));
             return commandResult.Ok;
         }
     }

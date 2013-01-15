@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSBuildMongo", "MSBuildMongo.csproj", "{66D9E4A6-24C8-402A-BBE1-C3E10F0C759A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDB.MSBuild", "MongoDB.MSBuild.csproj", "{66D9E4A6-24C8-402A-BBE1-C3E10F0C759A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

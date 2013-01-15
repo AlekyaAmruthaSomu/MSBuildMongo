@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Microsoft.Build.Framework;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace MSBuildMongo.Tasks
+namespace MongoDB.MSBuild.Tasks
 {
     public class RunJavascript : MongoTaskBase
     {
@@ -18,7 +15,7 @@ namespace MSBuildMongo.Tasks
         {
             try
             {
-                Log.LogMessage(string.Format("Executing javascript: '{0}'", this.FileName));
+                this.Log.LogMessage(string.Format("Executing javascript: '{0}'", this.FileName));
                 Eval(this.Database, this.FileName);
             }
             catch (Exception ex)

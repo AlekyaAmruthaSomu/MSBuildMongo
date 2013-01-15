@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="ApplyMongoMigration">
+
+  <Import Project="$(MSBuildProjectDirectory)\MongoDB.MSBuild.tasks" />
+
+  <PropertyGroup>
+    <ConnectionString>mongodb://localhost</ConnectionString>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Migrations Include="d:\develop\msbuild\MSBuildMongo\Sources\Migration\10-AddUserIntoStatisticDatabase.js">
+      <MigrationId>8B6FA36E-A44F-4A14-B237-8221B27C14EE</MigrationId>
+    </Migrations>
+    <Migrations Include="d:\develop\msbuild\MSBuildMongo\Sources\Migration\20-AddStatisticAggregation.js">
+      <MigrationId>9F7E207E-EF03-44DC-B9B5-85EDEC72142D</MigrationId>
+    </Migrations>
+  </ItemGroup>
+  
+  <Target Name="ApplyMongoMigration">
+    <ApplyMigration ConnectionString ="$(ConnectionString)" DatabaseName ="CockpitStatistic" Migrations="@(Migrations)"/>
+  </Target>
+</Project>

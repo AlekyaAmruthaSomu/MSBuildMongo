@@ -5,7 +5,7 @@ using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using MongoDB.Driver;
 
-namespace MSBuildMongo.Tasks
+namespace MongoDB.MSBuild.Tasks
 {
     public abstract class MongoTaskBase : Task
     {
@@ -39,10 +39,10 @@ namespace MSBuildMongo.Tasks
         }
 
         [Required]
-        public string ConnectionString { get; set; }
+        public virtual string ConnectionString { get; set; }
 
         [Required]
-        public string DatabaseName { get; set; }
+        public virtual string DatabaseName { get; set; }
 
         protected MongoDatabase Database
         {

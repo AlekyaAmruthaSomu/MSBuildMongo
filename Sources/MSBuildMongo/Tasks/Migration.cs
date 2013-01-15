@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MongoDB.Bson;
 
-namespace MSBuildMongo.Tasks
+namespace MongoDB.MSBuild.Tasks
 {
     internal class Migration
     {
