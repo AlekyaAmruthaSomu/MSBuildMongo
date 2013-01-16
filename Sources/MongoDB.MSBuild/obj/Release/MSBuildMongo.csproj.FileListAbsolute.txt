@@ -1,0 +1,13 @@
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Release\MSBuildMongo.targets
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Release\MSBuildMongo.tasks
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Release\MSBuildMongo.dll.config
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Release\MSBuildMongo.dll
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Release\MSBuildMongo.pdb
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Release\MongoDB.Bson.dll
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Release\MongoDB.Driver.dll
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Release\MongoDB.Bson.pdb
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Release\MongoDB.Bson.xml
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Release\MongoDB.Driver.pdb
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\bin\Release\MongoDB.Driver.xml
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\obj\Release\MSBuildMongo.dll
+D:\develop\msbuild\MSBuildMongo\Sources\MSBuildMongo\obj\Release\MSBuildMongo.pdb

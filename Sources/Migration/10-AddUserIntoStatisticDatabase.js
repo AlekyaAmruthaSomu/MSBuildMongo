@@ -1,4 +1,4 @@
 function() {
   print('adding user');
-  db.addUser('api', '123456', false);
+  db.addUser('api', 'qwerty123', false);
 };

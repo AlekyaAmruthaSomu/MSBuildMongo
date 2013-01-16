@@ -1,0 +1,7 @@
+d:\develop\msbuild\MSBuildMongo\Sources\MSBulidMongo\bin\Debug\MSBulidMongo.dll
+d:\develop\msbuild\MSBuildMongo\Sources\MSBulidMongo\bin\Debug\MSBulidMongo.pdb
+d:\develop\msbuild\MSBuildMongo\Sources\MSBulidMongo\obj\Debug\ResolveAssemblyReference.cache
+d:\develop\msbuild\MSBuildMongo\Sources\MSBulidMongo\obj\Debug\MSBulidMongo.dll
+d:\develop\msbuild\MSBuildMongo\Sources\MSBulidMongo\obj\Debug\MSBulidMongo.pdb
+d:\develop\msbuild\MSBuildMongo\Sources\MSBulidMongo\bin\Debug\MSBuildMongo.tasks
+d:\develop\msbuild\MSBuildMongo\Sources\MSBulidMongo\bin\Debug\MSBuildMongo.targets
